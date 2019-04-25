@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  ici
+//  Projet_3
 //
 //  Created by Mylenne  on 18/03/2019.
 //  Copyright © 2019 MirmitandBawi. All rights reserved.
@@ -9,52 +9,64 @@
 import Foundation
 
 
+
 class Team  {
     var playerName = ""
     var name = ""
     var choosenCharacter = [Character]()
+    
+    
 }
 
 
 class Character {
     var name: String
+    var lifePoint: Int
+    var weapon: String
+    var destructionCapacity: Int
+    var healingCapacity: Int
     
-    init(name: String){
+    init(name: String, lifePoint: Int, weapon: String, destructionCapacity: Int, healingCapacity: Int){
         self.name = name
+        self.lifePoint = lifePoint
+        self.weapon = weapon
+        self.destructionCapacity = destructionCapacity
+        self.healingCapacity = healingCapacity
     }
 }
 
 
 class Fighter: Character {
-    var lifePoint = 100
-    var weapon = "a sword"
-    var destructionCapacity = -10
-    var healingCapacity = 0
+    init(){
+        super.init(name: "", lifePoint: 100, weapon: " a sword", destructionCapacity: -10, healingCapacity: 0)
+    }
 }
 
 class Magus: Character {
     
-    var lifePoint = 50
-    var weapon = "magic"
-    var destructionCapacity = 0
-    var healingCapacity = 40
+    init() {
+        super.init(name: "", lifePoint: 50, weapon: "magic", destructionCapacity: 0, healingCapacity: 40)
+    }
 }
 
 class Colossus: Character {
     
-    var lifePoint = 200
-    var weapon = "hand"
-    var destructionCapacity = -1
-    var healingCapacity = 0
+    init() {
+        super.init(name: "", lifePoint: 200, weapon: "hand", destructionCapacity: -1, healingCapacity: 0)
+    }
 }
+
 
 class Dwarf: Character {
-    var lifePoint = 30
-    var weapon = "ax"
-    var destructionCapacity = -10
-    var healingCapactity = 0
+    
+    init() {
+        super.init(name: "", lifePoint: 30, weapon: "ax", destructionCapacity: -10, healingCapacity: 0)
+    }
+    
 }
 
+let team1 = Team()
+let team2 = Team()
 
 func menu() {
     print("What do you want to do?"
@@ -66,13 +78,12 @@ func menu() {
         switch choice {
         case "1":
             // NOM DE LEQUIPE
-            print("Choose a team name")
-            let team1 = Team()
+            print("Choose a team name:")
             team1.name = readLine()!
             print("Your team name is now \(team1.name)")
             
             // NOM DU JOUEUR
-            print(" Votre nom")
+            print("Your name:")
             if let line = readLine() {
                 let name = String(line)
                 team1.playerName = name
@@ -89,7 +100,7 @@ func menu() {
                 if let choice = readLine() {
                     switch choice {
                     case"1": // FIGHTER
-                        let aFighter = Fighter(name: "")
+                        let aFighter = Fighter()
                         print("Give your character a name:")
                         if let line = readLine() {
                             let name = String(line)
@@ -99,7 +110,7 @@ func menu() {
                         }
                         
                     case"2": // MAGUS
-                        let aMagus = Magus(name: "")
+                        let aMagus = Magus()
                         print("Donner un nom au personnage")
                         if let line = readLine() {
                             let name = String(line)
@@ -109,7 +120,7 @@ func menu() {
                         }
                         
                     case"3": //COLOSSUS
-                        let aColossus = Colossus(name: "")
+                        let aColossus = Colossus()
                         print("Donner un nom au personnage")
                         if let line = readLine() {
                             let name = String(line)
@@ -119,7 +130,7 @@ func menu() {
                         }
                         
                     case"4": // DWARF
-                        let aDwarf = Dwarf(name: "")
+                        let aDwarf = Dwarf()
                         print("Donner un nom au personnage")
                         if let line = readLine() {
                             let name = String(line)
@@ -133,7 +144,7 @@ func menu() {
                     }
                     
                     for character in team1.choosenCharacter {
-                        print("\(character) as \(character.name) ")
+                        print("\(character) as \(character.name) has \(character.lifePoint) life point")
                     }
                 }
             }
@@ -141,12 +152,12 @@ func menu() {
             // NOM DE LEQUIPE
             print("Second team, please choose a team name:")
             
-            let team2 = Team()
+            
             team2.name = readLine()!
             print("Your team name is now \(team2.name)")
             
             // NOM DU JOUEUR
-            print("Votre nom")
+            print("Your name:")
             if let line = readLine() {
                 let name = String(line)
                 team2.playerName = name
@@ -165,7 +176,7 @@ func menu() {
                 if let choice = readLine() {
                     switch choice {
                     case"1": // FIGHTER
-                        let aFighter = Fighter(name: "")
+                        let aFighter = Fighter()
                         print("Give your character a name:")
                         if let line = readLine() {
                             let name = String(line)
@@ -175,7 +186,7 @@ func menu() {
                         }
                         
                     case"2": // MAGUS
-                        let aMagus = Magus(name: "")
+                        let aMagus = Magus()
                         print("Donner un nom au personnage")
                         if let line = readLine() {
                             let name = String(line)
@@ -185,7 +196,7 @@ func menu() {
                         }
                         
                     case"3": //COLOSSUS
-                        let aColossus = Colossus(name: "")
+                        let aColossus = Colossus()
                         print("Donner un nom au personnage")
                         if let line = readLine() {
                             let name = String(line)
@@ -195,7 +206,7 @@ func menu() {
                         }
                         
                     case"4": // DWARF
-                        let aDwarf = Dwarf(name: "")
+                        let aDwarf = Dwarf()
                         print("Donner un nom au personnage")
                         if let line = readLine() {
                             let name = String(line)
@@ -214,10 +225,19 @@ func menu() {
                 print("\(character) as \(character.name) ")
             }
             
-        case "2": //Les combats
-            print(" fonctions avec switch pour affichage des points etc")
+            menu()
             
-        case "3": // Fin de partie
+        case "2": //Les combats
+            for character in team1.choosenCharacter {
+                print("In \(team1.name), the \(character) as \(character.name) had \(character.lifePoint) life point.")
+            }
+            
+            
+            
+            for character in team2.choosenCharacter {
+                print("In \(team2.name), the \(character) as \(character.name) has \(character.lifePoint) life point.")
+            }
+        case "3":
             print("END GAME")
             
         default:
@@ -227,5 +247,3 @@ func menu() {
 }
 
 menu()
-
-
