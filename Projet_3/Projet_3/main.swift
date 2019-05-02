@@ -14,8 +14,6 @@ class Team  {
     var playerName = ""
     var name = ""
     var choosenCharacter = [Character]()
-    
-    
 }
 
 
@@ -62,6 +60,9 @@ class Dwarf: Character {
     init() {
         super.init(name: "", lifePoint: 30, weapon: "ax", destructionCapacity: -10, healingCapacity: 0)
     }
+}
+
+func TeamMove(attacker: Character, opponent: Character) {
     
 }
 
@@ -228,15 +229,51 @@ func menu() {
             menu()
             
         case "2": //Les combats
+            //affichage des personnages et des points de vie
             for character in team1.choosenCharacter {
-                print("In \(team1.name), the \(character) as \(character.name) had \(character.lifePoint) life point.")
+                print("In \(team1.name), the \(character) as \(character.name) had \(character.lifePoint) life points.")
             }
-            
-            
-            
             for character in team2.choosenCharacter {
-                print("In \(team2.name), the \(character) as \(character.name) has \(character.lifePoint) life point.")
+                print("In \(team2.name), the \(character) as \(character.name) has \(character.lifePoint) life points.")
             }
+            
+            
+            
+            // compte rendu de la dernière action
+            // Choix du personnage à jouer
+            var numberOfChar1 = 1
+            
+            for character in team1.choosenCharacter {
+                print("Press \(numberOfChar1) to choose in \(team1.name), the \(character), \(character.name) as your attacker.")
+                numberOfChar1 += 1
+            }
+            var attackerForTeamMove1 = Character(name: "", lifePoint: 0, weapon: "", destructionCapacity: 0, healingCapacity: 0)
+            if let line = readLine() {
+                let numberForAttacker = Int(line)
+                attackerForTeamMove1 = team1.choosenCharacter[numberForAttacker!-1]
+                print("\(team1.name) you choosed \(attackerForTeamMove1.name) , the \(attackerForTeamMove1)")
+            }
+            
+            var numberOfChar2 = 1
+            var opponentForTeamMove1 = Character(name: "", lifePoint: 0, weapon: "", destructionCapacity: 0, healingCapacity: 0)
+            for character in team2.choosenCharacter {
+                print("Press \(numberOfChar2) to choose in \(team2.name), the \(character) , \(character.name) as your opponent.")
+                numberOfChar2 += 1
+                
+            }
+            if let line = readLine() {
+                let numberForOpponent = Int(line)
+                opponentForTeamMove1 = team2.choosenCharacter[numberForOpponent!-1]
+                print("\(team1.name) you choosed \(opponentForTeamMove1.name) , the \(opponentForTeamMove1)")
+            }
+            
+            TeamMove(attacker: attackerForTeamMove1, opponent: opponentForTeamMove1)
+            print("\(team1.name),  you choosed the \(attackerForTeamMove1.name), the \(attackerForTeamMove1) as your attacker and \(opponentForTeamMove1.name), the \(opponentForTeamMove1) as your opponent.")
+            
+            // choix de la cible du personnage
+            print("")
+            // action du personnage
+            
         case "3":
             print("END GAME")
             
