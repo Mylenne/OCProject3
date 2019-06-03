@@ -24,7 +24,6 @@ class Team  {
         let dead = (additionLifePoint == 0)
         return dead
     }
-    
 }
 
 
@@ -33,8 +32,6 @@ class Character {
     var name: String
     var lifePoint: Int
     var weapon: CharacterWeapon
-    //    var destructionCapacity: Int
-    //    var healingCapacity: Int
     
     init(name: String, lifePoint: Int, weapon: CharacterWeapon){
         self.name = name
@@ -159,7 +156,6 @@ func read() -> String {
 var switchMenu = [1, 2, 3]
 
 func readMenuNumber() -> Int {
-    
     if let resultNumber = Int(read()) {
         
         if switchMenu.contains(resultNumber) {
@@ -187,6 +183,25 @@ func readCharacterNumber() -> Int {
         return readCharacterNumber()
     }
 }
+
+var choosenCharacter = [0, 1, 2]
+
+func readChoosenCharacter() -> Int {
+    
+    if let resultNumber = Int(read()) {
+        if choosenCharacter.contains(resultNumber) {
+            return resultNumber
+        }else {
+            return readChoosenCharacter()
+        }
+    }else {
+        return readChoosenCharacter()
+    }
+}
+
+
+
+
 
 
 var playerNames = [String]()
@@ -251,6 +266,13 @@ func TeamMove(attacker: Character, opponent: Character) {
     }
     if opponent.lifePoint <= 0 {
         opponent.lifePoint = 0
+        if let index = team1.choosenCharacter.firstIndex(where: { $0 === opponent} ) {
+            team1.choosenCharacter.remove(at: index)
+        } else {
+            if let index = team2.choosenCharacter.firstIndex(where: { $0 === opponent} ) {
+                team2.choosenCharacter.remove(at: index)
+            }
+        }
     }
     if opponent.lifePoint >= 1 && !(attacker is Magus) {
         if let weapon = attacker.weapon as? LethalWeapon {
@@ -286,14 +308,11 @@ func atLeast3CharactersChoosenTeam2() -> Bool {
 
 
 
-
 func menu() {
     print("What do you want to do?"
         + "\n1. Start new game"
         + "\n2. Battles"
         + "\n3. End game")
-    
-    
     
     
     let choice = readMenuNumber()
@@ -302,7 +321,7 @@ func menu() {
         // TEAM NAME
         print("Choose a team name:")
         
-        let name: String = read()
+        let name = read()
         team1.name = name
         print("Your team name is now \(team1.name)")
         
@@ -463,11 +482,18 @@ func menu() {
                 numberAttackerChoosenByTeam1 += 1
             }
             
-            // CHOICE ATTACKER FOR TEAM 1
+            
             var attackerForTeamMove1: Character
             var opponentForTeamMove1: Character
+            var attackerForTeamMove2: Character
+            var opponentForTeamMove2: Character
             
-            let line = readCharacterNumber()
+            
+            // CHOICE ATTACKER FOR TEAM 1
+            //            var attackerForTeamMove1: Character
+            //            var opponentForTeamMove1: Character
+            
+            let line = readChoosenCharacter()
             let numberForAttacker = line
             attackerForTeamMove1 = team1.choosenCharacter[numberForAttacker-1]
             
@@ -493,7 +519,7 @@ func menu() {
                     numberOpponentChoosenByTeam1 += 1
                 }
                 
-                let numberForOpponent = readCharacterNumber()
+                let numberForOpponent = readChoosenCharacter()
                 opponentForTeamMove1 = team2.choosenCharacter[numberForOpponent-1]
                 print("\(team1.name),  you choosed the \(attackerForTeamMove1.name), the \(attackerForTeamMove1) as your attacker and \(opponentForTeamMove1.name), the \(opponentForTeamMove1) as your opponent.")
                 
@@ -513,7 +539,7 @@ func menu() {
                     
                 }
                 
-                let numberForTeamMate = readCharacterNumber()
+                let numberForTeamMate = readChoosenCharacter()
                 opponentForTeamMove1 = team1.choosenCharacter[numberForTeamMate-1]
                 print("\(team1.name) you choosed \(opponentForTeamMove1.name) , the \(opponentForTeamMove1)")
                 // Written opponentForTeamMove1 But it's the teammate choosen to be healed
@@ -531,8 +557,8 @@ func menu() {
                 }
                 
                 // CHOICE OF AN ATTACKER OR A HEALER
-                var attackerForTeamMove2: Character
-                var opponentForTeamMove2: Character
+                //                var attackerForTeamMove2: Character
+                //                var opponentForTeamMove2: Character
                 
                 var numberAttackerChoosenByTeam2 = 1
                 for character in team2.choosenCharacter {
@@ -540,8 +566,7 @@ func menu() {
                     numberAttackerChoosenByTeam2 += 1
                 }
                 
-                let line = readCharacterNumber()
-                let numberForAttacker = line
+                let numberForAttacker = readChoosenCharacter()
                 attackerForTeamMove2 = team2.choosenCharacter[numberForAttacker-1]
                 
                 // BOX APPEAR
@@ -566,7 +591,7 @@ func menu() {
                         print("Press \(numberOpponentChoosenByTeam2) to choose in \(team2.name), the \(character) , \(character.name) as your opponent.")
                         numberOpponentChoosenByTeam2 += 1
                     }
-                    let numberForOpponent = readCharacterNumber()
+                    let numberForOpponent = readChoosenCharacter()
                     opponentForTeamMove2 = team1.choosenCharacter[numberForOpponent-1]
                     print("\(team2.name),  you choosed the \(attackerForTeamMove2.name), the \(attackerForTeamMove2) as your attacker and \(opponentForTeamMove2.name), the \(opponentForTeamMove2) as your opponent.")
                     
@@ -585,7 +610,7 @@ func menu() {
                         
                     }
                     
-                    let numberForTeamMate = readCharacterNumber()
+                    let numberForTeamMate = readChoosenCharacter()
                     opponentForTeamMove2 = team2.choosenCharacter[numberForTeamMate-1]
                     print("\(team2.name) you choosed \(opponentForTeamMove2.name) , the \(opponentForTeamMove2)")
                     // Written opponentForTeamMove2 But it's the teammate choosen to be healed
