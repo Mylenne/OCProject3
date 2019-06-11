@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+
+class Colossus: Character {
+    static let maxPoints = 200
+    static let defaultWeapon = Fist()
+    init(name: String) {
+        super.init(name: name, lifePoint: Colossus.maxPoints, weapon: Colossus.defaultWeapon, maxLifePoint: Colossus.maxPoints)
+    }
+    static func present() -> String {
+        return "The Colossus has \(Colossus.maxPoints) life points and has \(Colossus.defaultWeapon.strengh) point of attack given by his \(Colossus.defaultWeapon.name)."
+    }
+}
+
+

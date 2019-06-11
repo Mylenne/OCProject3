@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+
+class Dwarf: Character {
+    static let maxPoints = 30
+    static let defaultWeapon = Ax()
+    
+    init(name: String) {
+        super.init(name: name, lifePoint: Dwarf.maxPoints, weapon: Dwarf.defaultWeapon, maxLifePoint: Dwarf.maxPoints)
+    }
+    static func present() -> String {
+       return "The Dwarf has \(Dwarf.maxPoints) life points and has \(Dwarf.defaultWeapon.strengh) point of attack given by his weapon, \(Dwarf.defaultWeapon.name)."
+    }
+}
+
+
+

@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+
+
+class Ax: Weapon {
+    init() {
+        super.init(strengh: 50, name: "an ax")
+    }
+}
