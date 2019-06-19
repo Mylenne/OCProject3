@@ -9,8 +9,8 @@
 import Foundation
 
 
-
 class Fist: Weapon {
+    
     init(){
         super.init(strengh: 5, name: "fist")
     }

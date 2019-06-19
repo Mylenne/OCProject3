@@ -10,6 +10,7 @@ import Foundation
 
 
 class MagicWand: Weapon {
+    
     init() {
         super.init(strengh: 35, name: "a magic wand")
     }
