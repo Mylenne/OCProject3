@@ -8,10 +8,16 @@
 
 import Foundation
 
-
+// Sword structure
 class Sword: Weapon {
-    
+    // type of weapon
+    static let type = "Sword"
+    // Point of attack of the weapon
+    static let damage = 10
+     // Description of the weapon
+    static let description = "This weapon take (Sword.damage) points from the opponent"
+    // Initialize Sword properties
     init() {
-        super.init(strengh: 10, name: "a sword")
+        super.init(strengh: Sword.damage, name: Sword.type)
     }
 }

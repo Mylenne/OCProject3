@@ -1,5 +1,5 @@
 //
-//  team.swift
+//  Team.swift
 //  Projet_3
 //
 //  Created by Mylenne  on 06/06/2019.
@@ -8,14 +8,18 @@
 
 import Foundation
 
-
+// Team structure
 class Team {
-    
+    // The player's name in the team
     var playerName = ""
+    
+    // The name of the team
     var name = ""
+    
+    // Array of all the character of the team
     var choosenCharacter = [Character]()
-   
-    // REMOVE DEAD CHARACTER FROM ARRAY "CHOOSENCHARACTER"
+    
+    // Function that removes dead character from array "choosenCharacter"
     func removeIfDead(character: Character) {
         if character.isDead() {
             character.lifePoint = 0
@@ -26,12 +30,12 @@ class Team {
         }
     }
     
-    // FUNCTION THAT MAKE SURE ALL CHARACTER IS DEAD
+    // Function that make sure all characters are dead
     func isDead() -> Bool {
         return self.choosenCharacter.isEmpty
     }
     
-    // IF THERE IS ONLY A MAGUS LEFT, GAME OVER FOR TEAM BECAUSE HE CAN ONLY HEAL
+    // If there is only a magus left, game over for team because he can only heal
     func magusLeft() -> Bool {
         if (self.choosenCharacter.count == 1) && (self.choosenCharacter[0] is Magus) {
             self.choosenCharacter[0].lifePoint = 0
@@ -42,87 +46,89 @@ class Team {
         return false
     }
     
+    // Function that let the player choose a character from the team
+    func chooseCharacter() -> Character {
+        var number = 1
+        for character in self.choosenCharacter {
+            print("Press \(number) to choose \(character.name), the \(character).")
+            number += 1
+        }
+        
+        let index = readChoosenCharacter(aliveCharacters: self.choosenCharacter.count)
+        return self.choosenCharacter[index-1]
+    }
+    
+    //Display of the characters and life points
+    func presentCharacters() {
+        print("In the \(self.name) team: ")
+        for character in self.choosenCharacter {
+            character.present()
+        }
+        print("")
+    }
+    
+    // Create a team
+    static func create() -> Team {
+        let team = Team()
+        
+        // TEAM NAME
+        print("Name your team:")
+        team.name = readName()
+        
+        // PLAYER NAME
+        print("Your name:")
+        team.playerName = readPlayerName()
+        print("Welcome \(team.playerName) 😃, you are now in the \(team.name)'s team ")
+        
+        // INTRODUCING CHARACTERS
+        while team.choosenCharacter.count < 3 {
+            print("Team \(team.name), choose \(3 - team.choosenCharacter.count) characters one by one for your team:"
+                + "\n1. \(Fighter.present()) "
+                + "\n2. \(Magus.present())"
+                + "\n3. \(Colossus.present())"
+                + "\n4. \(Dwarf.present())")
+            
+            // FUNCTION WITH SWITCH THAT CREATE THE CHARACTERS
+            team.choosenCharacter.append(Character.create())
+        }
+        
+        // RECALL MEMBERS OF THE TEAM
+        team.presentCharacters()
+        
+        return team
+    }
+    
     // Function fight between 2 characters
     func fight(team: Team) {
-        // if the characters of the team left isn't only a magus:
-        
+        // if the characters of the team left is only a magus then there is no fight
         if !self.magusLeft() {
-            print("\(self.name) please choose your attacker in the following choices:")
-            //DISPLAY OF THE CHARACTERS AND LIFEPOINTS
-            print("In the \(self.name) team: ")
-            for character in self.choosenCharacter {
-                print( "\(character.name), the \(character) has \(character.lifePoint) life points left ")
-            }
-            print("")
-            
-            // CHOICES OF CHARACTERS TO ATTACK OR HEAL
-            var number = 1
-            for character in self.choosenCharacter {
-                    print("Press \(number) to choose \(character.name), the \(character), as your attacker .")
-                    number += 1
-            }
-            
-            // CHOICE MADE BY GAMER OF THE ATTACKER BETWEEN ALIVE CHARACTER
-            let line = readChoosenCharacter(aliveCharacters: self.choosenCharacter.count)
-            let attacker = self.choosenCharacter[line-1]
+            // Choice of the attacker made by the player, between alive characters
+            print("\(self.name) please choose your attacker in your team:")
+            self.presentCharacters()
+            let attacker = self.chooseCharacter()
             var opponent: Character
             
-            // BOX APPEAR
+            // Box with treasure appears
             let randomNumber = arc4random_uniform(UInt32(10))
             if randomNumber == 2 {
                 attacker.boxAppear()
             }
             
-            // IF THE ATTACKER IS NOT A MAGUS, INTRODUCING CHOICE AS AN OPPONENT FOR HIM
+            // If the attacker is not a magus, introducing choice as an opponent for the player
             if !(attacker is Magus) {
-                print("\(self.name) you choosed \(attacker.name) , the \(attacker)")
-                print("\(self.name) please choose your opponent in \(team.name) in the following choices: \nIn the \(team.name) team:")
-                
-        
-                for character in team.choosenCharacter {
-                    print("\(character.name), the \(character) has \(character.lifePoint) life points left.")
-                }
-                 print("")
-                
-                // CHOICE POSSIBLE AS OPPONENT OF THE TEAM 1 IN THE TEAM 2
-                var number = 1
-                for character in team.choosenCharacter {
-                    print("Press \(number) to choose in \(team.name), the \(character), \(character.name).")
-                    number += 1
-                }
-                
-                // CHOICE MADE BY THE TEAM FOR AN OPPONENT
-                let numberOpponent = readChoosenCharacter(aliveCharacters: team.choosenCharacter.count)
-                opponent = team.choosenCharacter[numberOpponent-1]
-                print("\(self.name),  you choosed the \(attacker.name), the \(attacker) as your attacker and \(opponent.name), the \(opponent) as your opponent.")
-                
-                
-                
-                // IF ITS MAGUS IT HEALS IT DOESNT ATTACK
-            } else {
-                print("\(self.name) please choose your teammate in \(self.name) in the following choices to heal him: \nIn the \(self.name) team:")
-                
-                for character in self.choosenCharacter {
-                    print("\(character.name), the \(character) has \(character.lifePoint) life points left.")
-                }
-                
-                // INTRODUCING WHICH TEAMMATE HE WANTS TO SAVE
-                var number = 1
-                for character in self.choosenCharacter {
-                    print("Press \(number) to save \(character.name), the \(character)")
-                    number += 1
-                }
-                
-                // CHOICE MADE AS TEAMMATE HE WANTS TO SAVE
-                let numberTeamMate = readChoosenCharacter(aliveCharacters: self.choosenCharacter.count)
-                opponent = self.choosenCharacter[numberTeamMate-1]
-                print("\(self.name) you choosed \(opponent.name) , the \(opponent)")
-                // Written opponentForTeamMove1 But it's the teammate choosen to be healed
-                
+                print("\(self.name) please choose your opponent in \(team.name):\n")
+                team.presentCharacters()
+                opponent = team.chooseCharacter()
+            } else { //If it's magus it heals it doesn't attacks and must choose a team mate from his own team
+                print("\(self.name), choose your team mate in \(self.name) to heal him:")
+                self.presentCharacters()
+                opponent = self.chooseCharacter()
             }
-            // ATTACKER ATTACKS OPPONENT
+            
+            // Attacker attacks opponent or save team mate
             attacker.actionOn(character: opponent)
-            // REMOVED IF OPPONENT IS DEAD FROM HIS OWN TEAM
+            
+            // Removed of opponent is dead from his own team
             team.removeIfDead(character: opponent)
         }
     }

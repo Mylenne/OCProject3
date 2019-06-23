@@ -8,15 +8,24 @@
 
 import Foundation
 
-
+// Magus structure, which is a character
 class Magus: Character {
+    // Maximum life points that the Magus can have, and has at the beginning of the game
     static let maxPoints = 50
+    
+    // Default weapon that the Magus has
     static let defaultWeapon = Magic()
     
+    // Type of character
+    static let type = "Magus"
+    
+    
+    // Initialize Magus properties
     init(name:String) {
         super.init(name: name, lifePoint: Magus.maxPoints, weapon: Magus.defaultWeapon, maxLifePoint: Magus.maxPoints)
     }
     
+    // Present the Magus
     static func present() -> String {
         return "The Magus has \(Magus.maxPoints) life points and has \(Magus.defaultWeapon.strengh) point of healing power given by his \(Magus.defaultWeapon.name)."
     }
@@ -28,7 +37,7 @@ class Magus: Character {
         if character.lifePoint > character.maxLifePoint {
             character.lifePoint = character.maxLifePoint
         }
-        print("\(self.name) has save your team mate, \(character.name) by healing him and has now with his \(Magus.defaultWeapon.name), he has now \(character.lifePoint) ")
+        print("\(self.name) has save your team mate, \(character.name) by healing him and has now with his \(self.weapon.name), he has now \(character.lifePoint) ")
         
     }
 }

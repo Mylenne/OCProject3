@@ -1,5 +1,5 @@
 //
-//  Function.swift
+//  Utils.swift
 //  Projet_3
 //
 //  Created by Mylenne  on 06/06/2019.
@@ -26,7 +26,7 @@ func read() -> String {
 }
 
 
-// Array of all the names created
+// Array of all the names created except the player names created
 var allNames = [String]()
 
 // Function that verify if the name is already use, if not it adds the new name in the array allNames
@@ -42,7 +42,7 @@ func readName() -> String {
 }
 
 
-
+// Array with all the possibilities of the Menu
 var switchMenu = [1, 2, 3]
 
 // Function that make sure that the gamer choose beetween 1 to 3 to make sure that is no bug
@@ -61,6 +61,7 @@ func readMenuNumber() -> Int {
     }
 }
 
+// Array with all the choices possible to choose a type of character, magus colossus, fighter, dwarf
 var switchCharacter = [1, 2, 3, 4]
 
 // Function that make sure that the gamer choose between 1 to 4 to choose what type of character he wants to create
@@ -82,7 +83,6 @@ func readCharacterNumber() -> Int {
 
 // function that show only the numnber of the alive characters, to play with
 func readChoosenCharacter(aliveCharacters: Int) -> Int {
-    
     if let resultNumber = Int(read()) {
         if resultNumber <= aliveCharacters && resultNumber > 0 {
             return resultNumber
@@ -96,6 +96,7 @@ func readChoosenCharacter(aliveCharacters: Int) -> Int {
     }
 }
 
+// Array with all the name used as a player name
 var playerNames = [String]()
 
 // function that make sure the player name choosen doesn't exist yet
@@ -110,40 +111,5 @@ func readPlayerName() -> String {
     }
 }
 
-//  Function that create the choosen character by a switch
 
-func createCharacter() -> Character {
-    var character: Character
-    let choice = readCharacterNumber()
-    
-    switch choice {
-    case 1: // FIGHTER
-        print("Give your character a name:")
-        let line = readName()
-        character = Fighter(name: line)
-        print("Your fighter is now called \(character.name)")
-        
-    case 2: // MAGUS
-        print("Give your character a name:")
-        let line = readName()
-        character = Magus(name: line)
-        print("Your magus is now called \(character.name)")
-        
-    case 3: //COLOSSUS
-        print("Give your character a name:")
-        let line = readName()
-        character = Colossus(name: line)
-        print("Your colossus is now called \(character.name)")
-        
-    case 4: // DWARF
-        print("Give your character a name:")
-        let line = readName()
-        character = Dwarf(name: line)
-        print("Your dwarf is now called \(character.name)")
-        
-    default :
-        return createCharacter()
-    }
-    
-    return character
-}
+

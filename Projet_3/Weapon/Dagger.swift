@@ -8,11 +8,17 @@
 
 import Foundation
 
-
+// Dagger structure
 class Dagger: Weapon {
-    
+    // type of weapon
+    static let type = "Dagger"
+    // Point of attack of the weapon
+    static let damage = 5
+    // Description of the weapon
+    static let description = "This weapon take (Dagger.damage) points from the opponent"
+    // Initialize dagger properties
     init() {
-        super.init(strengh: 5, name: "a dagger")
+        super.init(strengh: Dagger.damage, name: Dagger.type)
         
     }
 }
