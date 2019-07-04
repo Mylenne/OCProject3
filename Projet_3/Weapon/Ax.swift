@@ -10,14 +10,25 @@ import Foundation
 
 // Ax structure
 class Ax: Weapon {
-    // type of weapon
-    static let type = "Ax"
+    // Name of weapon
+    static let name = "ax"
+    
+    // Array of material possible
+    static let axes = ["hatchet", "splitting Ax", "Felling Ax", "Carpenter's Ax", "Broad Ax", "Tomahawk Ax", "Double Bit Ax", "Battle Ax", "Viking Ax"]
+    
     // Point of attack of the weapon
     static let damage = 50
+    
+    var type: String
+    
     // Description of the weapon
-    static let description = "This weapon take (Ax.damage) points from the opponent"
+    override func description() -> String {
+        return "This \(self.name) is a \(type) and it takes away \(self.strengh) points"
+    }
+    
     // Initialize Ax properties
     init() {
-        super.init(strengh: Ax.damage, name: Ax.type)
+        self.type = Ax.axes[Int(arc4random_uniform(UInt32(Ax.axes.count)))]
+        super.init(strengh: Ax.damage, name: Ax.name)
     }
 }

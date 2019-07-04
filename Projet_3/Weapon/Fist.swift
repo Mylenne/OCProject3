@@ -10,14 +10,19 @@ import Foundation
 
 // Fist strucutre
 class Fist: Weapon {
-    // type of weapon
-    static let type = "Fist"
+    // Name of weapon
+    static let name = "fist"
+    
     // Point of attack of the weapon
     static let damage = 5
+    
     // Description of the weapon
-    static let description = "This weapon take (Fist.damage) points from the opponent"
+    override func description() -> String {
+        return "Those fist can take away \(self.strengh) points"
+    }
+    
     // Initialize Fist properties
     init(){
-        super.init(strengh: Fist.damage, name: Fist.type)
+        super.init(strengh: Fist.damage, name: Fist.name)
     }
 }

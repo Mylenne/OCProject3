@@ -25,16 +25,26 @@ func read() -> String {
     }
 }
 
+extension String {
+    var isInt: Bool {
+        return Int(self) != nil
+    }
+}
 
 // Array of all the names created except the player names created
 var allNames = [String]()
 
 // Function that verify if the name is already use, if not it adds the new name in the array allNames
 func readName() -> String {
+
+    
     let name = read()
     if allNames.contains(name) {
         print("Name already used, choose again:")
-        return read()
+        return readName()
+    } else if Int(name) != nil {
+        print("You cannot have a number as a name, write again:")
+       return readName()
     } else {
         allNames.append(name)
         return name

@@ -60,7 +60,6 @@ class Team {
     
     //Display of the characters and life points
     func presentCharacters() {
-        print("In the \(self.name) team: ")
         for character in self.choosenCharacter {
             character.present()
         }

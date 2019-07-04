@@ -26,7 +26,7 @@ class Fighter: Character {
     
     // Present the fighter
     static func present() -> String {
-        return "The FIGHTER has \(Fighter.maxPoints) life points and has \(Fighter.defaultWeapon.strengh) point of attack given by his weapon, \(Fighter.defaultWeapon.name)."
+        return "The \(Fighter.type) has \(Fighter.maxPoints) life points and has \(Fighter.defaultWeapon.strengh) points of attack given by his \(Fighter.defaultWeapon.name)."
     }
 }
 

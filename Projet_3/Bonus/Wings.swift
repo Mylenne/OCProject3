@@ -10,15 +10,28 @@ import Foundation
 
 // Wings (bonus in the game) structure
 class Wings: Weapon {
-    // type of weapon
-    static let type = "Wings"
+    
+    // Possible type of Wings
+    static let wings = ["Angel wings", "Evil Wings"]
+    
+    // name of weapon
+    static let name = "Wings"
+    
     // Point of attack of the weapon
     static let damage = 20
+    
+    // Type of Wings
+    var type: String
+    
     // Description of the weapon
-    static let description = "This weapon take (Wings.damage) points from the opponent"
+    override func description() -> String {
+        return "Those \(self.name) are \(type) and can take away \(self.strengh) point."
+    }
+    
     // Initialize Wings properties
     init() {
-        super.init(strengh: Wings.damage, name: Wings.type)
+        self.type = Wings.wings[Int(arc4random_uniform(UInt32(Wings.wings.count)))]
+        super.init(strengh: Wings.damage, name: Wings.name)
     }
 }
 

@@ -18,6 +18,7 @@ class Dwarf: Character {
     
     // Type of character
     static let type = "Dwarf"
+    
     // Initialize Dwarf properties
     init(name: String) {
         super.init(name: name, lifePoint: Dwarf.maxPoints, weapon: Dwarf.defaultWeapon, maxLifePoint: Dwarf.maxPoints)
@@ -25,7 +26,7 @@ class Dwarf: Character {
     
     // Present Dward
     static func present() -> String {
-        return "The Dwarf has \(Dwarf.maxPoints) life points and has \(Dwarf.defaultWeapon.strengh) point of attack given by his weapon, \(Dwarf.defaultWeapon.name)."
+        return "The \(Dwarf.type) has \(Dwarf.maxPoints) life points and has \(Dwarf.defaultWeapon.strengh) points of attack given by his \(Dwarf.defaultWeapon.name)."
     }
 }
 

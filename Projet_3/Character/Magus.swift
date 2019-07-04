@@ -19,7 +19,6 @@ class Magus: Character {
     // Type of character
     static let type = "Magus"
     
-    
     // Initialize Magus properties
     init(name:String) {
         super.init(name: name, lifePoint: Magus.maxPoints, weapon: Magus.defaultWeapon, maxLifePoint: Magus.maxPoints)
@@ -27,7 +26,7 @@ class Magus: Character {
     
     // Present the Magus
     static func present() -> String {
-        return "The Magus has \(Magus.maxPoints) life points and has \(Magus.defaultWeapon.strengh) point of healing power given by his \(Magus.defaultWeapon.name)."
+        return "The \(Magus.type) has \(Magus.maxPoints) life points and has \(Magus.defaultWeapon.strengh) points of healing power given by his \(Magus.defaultWeapon.name)."
     }
     
     // If it's a magus it will add points to his team mate and not take away points, from his enemy

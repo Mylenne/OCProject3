@@ -10,14 +10,32 @@ import Foundation
 
 // Magic Wand Structure
 class MagicWand: Weapon {
-    // type of weapon
-    static let type = "Magic Wand"
+    // Name of weapon
+    static let name = "wand"
+    
+    // Array of wand material possible
+    static let wandMaterials = ["cedar wood", "birch wood", "unicorn wood", "acacia wood", "chesnut wood", "cherry wood", "apple wood", "hazel wood"]
+
     // Point of attack of the weapon
     static let damage = 35
+    
+    // Handle of the wand
+    var handle: String
+    
+    // Wand shaft of the wand
+    var wandShaft : String 
+    
+    
     // Description of the weapon
-    static let description = "This weapon take (MagicWand.damage) points from the opponent"
+    override func description() -> String {
+        return "This magnificent \(self.name) is composed of a wand shaft created in pure \(self.wandShaft) and a handle made in \(self.handle) as well, that give \(self.strengh) points back"
+    }
+    
     // Initialize MagicWand properties
     init() {
-        super.init(strengh: MagicWand.damage, name: MagicWand.type)
+        self.wandShaft = MagicWand.wandMaterials[Int(arc4random_uniform(UInt32(MagicWand.wandMaterials.count)))]
+        self.handle = wandShaft
+        super.init(strengh: MagicWand.damage, name: MagicWand.name)
     }
 }
+

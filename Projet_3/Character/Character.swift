@@ -33,7 +33,7 @@ class Character {
     
     // Introduce the characters lifepoint and strengh
     func present() {
-        print("\(self.name), the \(self) has \(self.lifePoint) life points.")
+        print("\(self.name), the \(self) has \(self.lifePoint) life points and can take away \(self.weapon.strengh) points. He has a \(self.weapon.name). \(self.weapon.description())")
     }
     
     //  Function that create the choosen character by a switch
@@ -46,25 +46,29 @@ class Character {
             print("Give your character a name:")
             let line = readName()
             character = Fighter(name: line)
-            print("Your fighter is now called \(character.name)")
+            character.present()
+            print("\n")
             
         case 2: // MAGUS
             print("Give your character a name:")
             let line = readName()
             character = Magus(name: line)
-            print("Your magus is now called \(character.name)")
+            character.present()
+            print("\n")
             
         case 3: //COLOSSUS
             print("Give your character a name:")
             let line = readName()
             character = Colossus(name: line)
-            print("Your colossus is now called \(character.name)")
+            character.present()
+            print("\n")
             
         case 4: // DWARF
             print("Give your character a name:")
             let line = readName()
             character = Dwarf(name: line)
-            print("Your dwarf is now called \(character.name)")
+            character.present()
+            print("\n")
             
         default :
             return self.create()
@@ -73,36 +77,41 @@ class Character {
         return character
     }
     
-    
-    // Count the life points after fight
-    func actionOn(character: Character) {
-        if character.weapon is Wings {
-            print("\nYour opponent, \(character.name) has \(character.weapon) and he escaped from your attack. /n So he still has \(character.lifePoint) left.")
-        } else {
-            character.lifePoint = character.lifePoint - self.weapon.strengh
-            print("\n\(character.name), the \(character), has been attacked by \(self.name), the \(self), has lost \(self.weapon.strengh) life points and has now only \(character.lifePoint) points left 😢")
-        }
-    }
-    
     // Check if the character is dead
     func isDead() -> Bool {
         return self.lifePoint <= 0
     }
     
+    // Count the life points after fight
+    func actionOn(character: Character) {
+        if character.weapon is Wings {
+            print("\nYour opponent, \(character.name) has \(Wings.wings) and he escaped from your attack. /n So he still has \(character.lifePoint) left.")
+        } else {
+            character.lifePoint = character.lifePoint - self.weapon.strengh
+            if character.lifePoint < 0 {
+                character.lifePoint = 0
+            }
+            print("\n\(character.name), the \(character), has been attacked by \(self.name), the \(self) with a \(self.weapon), he has lost \(self.weapon.strengh) life points and has now only \(character.lifePoint) points left 😢")
+        }
+    }
+    
+    
     // Box with new weapon
     func boxAppear () {
         // If the character is not a Magus it will give one of the randonAttackerWeapon as his new weapon.
         if !(self is Magus) {
-            let randomWeapon = [Dagger(), Sword(), Fist(), Wings()]
-            let randomNumber = Int(arc4random_uniform(UInt32(randomWeapon.count)))
-            self.weapon = randomWeapon[randomNumber]
-            print("\nThe character has found a box and has changed his old weapon to a \(self.weapon). /n He now has the capacity to take away \(self.weapon.strengh) points from his opponent")
+            let randomWeapons = [Dagger(), Sword(), Wings(), Ax()]
+            let randomNumber = Int(arc4random_uniform(UInt32(randomWeapons.count)))
+            self.weapon = randomWeapons[randomNumber]
+            
+            print("\nThe character has found a box and has changed his old weapon to a \(self.weapon.name). \(self.weapon.description()) 👏.")
+            
             // if a magus found the box he will have a healing type of power and not a harmful one
         } else {
-            let randomMagusWeapon = [MagicWand(), Magic(), Wings()]
+            let randomMagusWeapon = [MagicWand(), Magic()]
             let randomNumber = Int(arc4random_uniform(UInt32(randomMagusWeapon.count)))
             self.weapon = randomMagusWeapon[randomNumber]
-            print("\nThe character has found a box and has changed his old weapon to a \(self.weapon). \n that He now has the capacity heal \(self.weapon.strengh) points of his team mate.")
+            print("\nThe character has found a box and has changed his old weapon to a \(self.weapon.name). \(self.weapon.description()) 👏.")
         }
     }
 }

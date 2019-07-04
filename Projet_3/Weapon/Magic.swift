@@ -10,15 +10,27 @@ import Foundation
 
 // Magic stucture
 class Magic: Weapon {
-    // type of weapon
-    static let type = "Magic"
+    // Name of weapon
+    static let name = "magic"
+    
+    // Type of magic
+    static let magics = ["black", "white"]
+    
     // Point of attack of the weapon
     static let damage = 30
+    
+    // Type of magic
+    var type: String
+    
     // Description of the weapon
-    static let description = "This weapon take (Magic.damage) points from the opponent"
+    override func description() -> String {
+        return "Thanks to this \(type) \(self.name), you will be able to save your team mate by \(self.strengh) life points"
+    }
+    
     // Initialize Magic properties
     init() {
-        super.init(strengh: Magic.damage, name: Magic.type)
+        self.type = Magic.magics[Int(arc4random_uniform(UInt32(Magic.magics.count)))]
+        super.init(strengh: Magic.damage, name: Magic.name)
     }
 }
 

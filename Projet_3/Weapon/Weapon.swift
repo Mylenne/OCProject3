@@ -11,14 +11,23 @@ import Foundation
 // Weapon stucture
 class Weapon {
     // Strengh of the weapon that the character has
-    var strengh: Int
+    let strengh: Int
     
     // Name of the weapon
-    var name: String
+    let name: String
     
+    // Description of the weapon
+    func description() -> String {
+        return "The weapon is a \(self.name) and can take away \(self.strengh) life points."
+    }
     // Initialize weapon properties
     init(strengh: Int, name: String) {
         self.strengh = strengh
         self.name = name
+        
     }
+    
+    
 }
+
+

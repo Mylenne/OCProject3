@@ -21,8 +21,8 @@ func menu() {
         + "\n1.😺 Start new game 😊"
         + "\n2.😈 Ready to Fight? 😠"
         + "\n3.💀 End game 😱")
-    let choice = readMenuNumber()
     
+    let choice = readMenuNumber()
     switch choice {
     case 1: // FIRST SECTION: creation of the 2 teams
         numberOfRound = 0
@@ -32,6 +32,7 @@ func menu() {
         // Display of the menu to begin a battle
         menu()
     case 2: // SECOND SECTION : Fights
+        // If the player go to case 2 before player if will send him to the else and so, the menu again
         if !team1.isDead() && !team2.isDead() {
             // WHILE NEITHER ONE OF THE TEAM IS DEAD, FIGHT
             while !(team1.isDead() || team2.isDead()) {
