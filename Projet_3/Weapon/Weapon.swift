@@ -20,14 +20,10 @@ class Weapon {
     func description() -> String {
         return "The weapon is a \(self.name) and can take away \(self.strengh) life points."
     }
+    
     // Initialize weapon properties
     init(strengh: Int, name: String) {
         self.strengh = strengh
         self.name = name
-        
     }
-    
-    
 }
-
-

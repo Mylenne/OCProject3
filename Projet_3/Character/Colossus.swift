@@ -19,7 +19,6 @@ class Colossus: Character {
     // Type of character
     static let type = "Colossus"
     
-    
     // Initiliaze Colossus properties
     init(name: String) {
         super.init(name: name, lifePoint: Colossus.maxPoints, weapon: Colossus.defaultWeapon, maxLifePoint: Colossus.maxPoints)
@@ -29,7 +28,4 @@ class Colossus: Character {
     static func present() -> String {
         return "The \(Colossus.type) has \(Colossus.maxPoints) life points and has \(Colossus.defaultWeapon.strengh) points of attack with his \(Colossus.defaultWeapon.name)."
     }
-    
 }
-
-

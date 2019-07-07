@@ -1,5 +1,5 @@
 //
-//  SpecialWeapon.swift
+//  Magic.swift
 //  Projet_3
 //
 //  Created by Mylenne  on 03/06/2019.
@@ -16,7 +16,7 @@ class Magic: Weapon {
     // Type of magic
     static let magics = ["black", "white"]
     
-    // Point of attack of the weapon
+    // Points of attack of the weapon
     static let damage = 30
     
     // Type of magic
@@ -24,7 +24,7 @@ class Magic: Weapon {
     
     // Description of the weapon
     override func description() -> String {
-        return "Thanks to this \(type) \(self.name), you will be able to save your team mate by \(self.strengh) life points"
+        return "Thanks to this \(self.type) \(self.name), you will be able to save your team mate by \(self.strengh) life points"
     }
     
     // Initialize Magic properties
@@ -33,5 +33,3 @@ class Magic: Weapon {
         super.init(strengh: Magic.damage, name: Magic.name)
     }
 }
-
-

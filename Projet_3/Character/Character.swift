@@ -13,17 +13,17 @@ class Character {
     // Name of the character
     var name: String
     
-    // Number of life point of the character
+    // Number of life points of the character
     var lifePoint: Int
     
     // Weapon of the character
     var weapon: Weapon
     
-    // maxLifePoint are the Maximum life points that the character can have,
-    //the Magus won't be able to give more points than what his team mate initially has, at the beginning of the game
+    // maxLifePoint is the Maximum life points that the character can have,
+    // The Magus won't be able to give more points than what his team mate initially has, at the beginning of the game
     let maxLifePoint: Int
     
-    // initialize character properties
+    // Initialize character properties
     init(name: String, lifePoint: Int, weapon: Weapon, maxLifePoint: Int){
         self.name = name
         self.lifePoint = lifePoint
@@ -36,8 +36,8 @@ class Character {
         print("\(self.name), the \(self) has \(self.lifePoint) life points and can take away \(self.weapon.strengh) points. He has a \(self.weapon.name). \(self.weapon.description())")
     }
     
-    //  Function that create the choosen character by a switch
-    static func create() -> Character {
+    // Function that create the choosen character by a switch
+    public static func create() -> Character {
         var character: Character
         let choice = readCharacterNumber()
         
@@ -73,7 +73,6 @@ class Character {
         default :
             return self.create()
         }
-        
         return character
     }
     
@@ -88,6 +87,7 @@ class Character {
             print("\nYour opponent, \(character.name) has \(Wings.wings) and he escaped from your attack. /n So he still has \(character.lifePoint) left.")
         } else {
             character.lifePoint = character.lifePoint - self.weapon.strengh
+            
             if character.lifePoint < 0 {
                 character.lifePoint = 0
             }
@@ -95,25 +95,21 @@ class Character {
         }
     }
     
-    
-    // Box with new weapon
+    // Box with new weapons
     func boxAppear () {
         // If the character is not a Magus it will give one of the randonAttackerWeapon as his new weapon.
         if !(self is Magus) {
             let randomWeapons = [Dagger(), Sword(), Wings(), Ax()]
             let randomNumber = Int(arc4random_uniform(UInt32(randomWeapons.count)))
             self.weapon = randomWeapons[randomNumber]
+            print("\nThe character has found a treasures box and has changed his old weapon to a \(self.weapon.name). \(self.weapon.description()) 👏.")
             
-            print("\nThe character has found a box and has changed his old weapon to a \(self.weapon.name). \(self.weapon.description()) 👏.")
-            
-            // if a magus found the box he will have a healing type of power and not a harmful one
+            // If a magus found the box he will have a healing type of power and not a lethal one
         } else {
             let randomMagusWeapon = [MagicWand(), Magic()]
             let randomNumber = Int(arc4random_uniform(UInt32(randomMagusWeapon.count)))
             self.weapon = randomMagusWeapon[randomNumber]
-            print("\nThe character has found a box and has changed his old weapon to a \(self.weapon.name). \(self.weapon.description()) 👏.")
+            print("\nThe character has found a treasures box and has changed his old weapon to a \(self.weapon.name). \(self.weapon.description()) 👏.")
         }
     }
 }
-
-

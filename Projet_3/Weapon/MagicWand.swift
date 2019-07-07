@@ -13,9 +13,9 @@ class MagicWand: Weapon {
     // Name of weapon
     static let name = "wand"
     
-    // Array of wand material possible
+    // Array of possible wand material
     static let wandMaterials = ["cedar wood", "birch wood", "unicorn wood", "acacia wood", "chesnut wood", "cherry wood", "apple wood", "hazel wood"]
-
+    
     // Point of attack of the weapon
     static let damage = 35
     
@@ -24,7 +24,6 @@ class MagicWand: Weapon {
     
     // Wand shaft of the wand
     var wandShaft : String 
-    
     
     // Description of the weapon
     override func description() -> String {
@@ -38,4 +37,3 @@ class MagicWand: Weapon {
         super.init(strengh: MagicWand.damage, name: MagicWand.name)
     }
 }
-

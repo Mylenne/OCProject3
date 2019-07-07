@@ -13,13 +13,13 @@ class Fighter: Character {
     // Maximum life points that the Fighter can have, and has at the beginning of the game
     static let maxPoints = 100
     
-    // Default weapon that the fighter has
+    // Default weapon that the Fighter has
     static let defaultWeapon = Sword()
     
     // Type of character
     static let type = "Fighter"
     
-    // initialize fighter properties
+    // Initialize Fighter properties
     init(name: String) {
         super.init(name: name, lifePoint: Fighter.maxPoints, weapon: Fighter.defaultWeapon, maxLifePoint: Fighter.maxPoints)
     }
@@ -29,4 +29,3 @@ class Fighter: Character {
         return "The \(Fighter.type) has \(Fighter.maxPoints) life points and has \(Fighter.defaultWeapon.strengh) points of attack given by his \(Fighter.defaultWeapon.name)."
     }
 }
-

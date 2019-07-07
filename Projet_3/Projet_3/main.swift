@@ -13,7 +13,7 @@ var team1 = Team()
 var team2 = Team()
 
 // NUMBER OF ROUND FOR CASE 3 : END GAME
-var numberOfRound: Int = 0
+var numberOfRounds: Int = 0
 
 // MENU
 func menu() {
@@ -23,9 +23,10 @@ func menu() {
         + "\n3.💀 End game 😱")
     
     let choice = readMenuNumber()
+    
     switch choice {
     case 1: // FIRST SECTION: creation of the 2 teams
-        numberOfRound = 0
+        numberOfRounds = 0
         team1 = Team.create()
         team2 = Team.create()
         
@@ -36,9 +37,9 @@ func menu() {
         if !team1.isDead() && !team2.isDead() {
             // WHILE NEITHER ONE OF THE TEAM IS DEAD, FIGHT
             while !(team1.isDead() || team2.isDead()) {
-                numberOfRound += 1
-                
+                numberOfRounds += 1
                 team1.fight(team: team2)
+                
                 if !(team1.isDead() || team2.isDead()) {
                     team2.fight(team: team1)
                 }
@@ -51,8 +52,9 @@ func menu() {
         menu()
     case 3: // THIRD SECTION : Result of the fight
         // The result appear only if the players have played
-        if numberOfRound >= 1 {
-            print(" You have played \(numberOfRound) round")
+        if numberOfRounds >= 1 {
+            print(" You have played \(numberOfRounds) round")
+            
             if team1.isDead() {
                 print("Congratulation to \(team2.playerName) in team \(team2.name), you won!!!😉😊👍")
                 print("Sorry to \(team1.playerName) in team \(team1.name), you loose 💩🍼")
@@ -60,6 +62,7 @@ func menu() {
                 print("Congratulation to \(team1.playerName) in team \(team1.name), you won!!!😉😊👍")
                 print("Sorry to to \(team2.playerName) in team \(team2.name), you loose 💩🍼 ")
             }
+            
             print("END GAME")
         } else {
             print("You exited the game 👎")

@@ -13,7 +13,7 @@ class Sword: Weapon {
     // Name of weapon
     static let name = "sword"
     
-    // Array of material possible
+    // Array of possible materials as the Sword blade
     static let blades = ["stone", "copper", "bronze", "bone", "adamantine"]
     
     // Point of attack of the weapon

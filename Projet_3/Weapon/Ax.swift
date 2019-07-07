@@ -13,17 +13,18 @@ class Ax: Weapon {
     // Name of weapon
     static let name = "ax"
     
-    // Array of material possible
+    // Array of different axes possible
     static let axes = ["hatchet", "splitting Ax", "Felling Ax", "Carpenter's Ax", "Broad Ax", "Tomahawk Ax", "Double Bit Ax", "Battle Ax", "Viking Ax"]
     
     // Point of attack of the weapon
     static let damage = 50
     
+    // Ax type
     var type: String
     
     // Description of the weapon
     override func description() -> String {
-        return "This \(self.name) is a \(type) and it takes away \(self.strengh) points"
+        return "This \(self.name) is a \(self.type) and it takes away \(self.strengh) points"
     }
     
     // Initialize Ax properties
