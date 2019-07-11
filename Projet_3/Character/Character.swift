@@ -37,7 +37,7 @@ class Character {
     }
     
     // Function that create the choosen character by a switch
-    public static func create() -> Character {
+    static func create() -> Character {
         var character: Character
         let choice = readCharacterNumber()
         
