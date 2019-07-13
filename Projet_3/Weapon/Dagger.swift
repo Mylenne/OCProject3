@@ -26,8 +26,8 @@ class Dagger: Weapon {
     var blade : String
     
     // Description of the weapon
-    override func description() -> String {
-        return "This \(self.name) take away \(self.strengh) points. It has a handle made of \(self.handle) and a \(self.blade) blade"
+    override var description: String {
+       return "This \(self.name) takes away \(self.strengh) points. It has a handle made of \(self.handle) and a \(self.blade) blade"
     }
     
     // Initialize Dagger properties

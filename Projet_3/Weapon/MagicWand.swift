@@ -26,8 +26,8 @@ class MagicWand: Weapon {
     var wandShaft : String 
     
     // Description of the weapon
-    override func description() -> String {
-        return "This magnificent \(self.name) is composed of a wand shaft created in pure \(self.wandShaft) and a handle made in \(self.handle) as well, that give \(self.strengh) points back"
+    override var description: String {
+        return "This magnificent \(self.name) is composed of a wand shaft created in pure \(self.wandShaft) and a handle made in \(self.handle) as well, that gives \(self.strengh) points back"
     }
     
     // Initialize MagicWand properties

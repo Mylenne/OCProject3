@@ -10,22 +10,19 @@ import Foundation
 
 // Dwarf structure
 class Dwarf: Character {
-    // Maximum life points that the Dwarf can have, and has at the beginning of the game
+    // Maximum life points Dwarf type can have
     static let maxPoints = 30
     
-    // Default weapon that the Dwarf has
+    // Default weapon Dwarf type has
     static let defaultWeapon = Ax()
-    
-    // Type of character
-    static let type = "Dwarf"
-    
+  
     // Initialize Dwarf properties
     init(name: String) {
-        super.init(name: name, lifePoint: Dwarf.maxPoints, weapon: Dwarf.defaultWeapon, maxLifePoint: Dwarf.maxPoints)
+        super.init(name: name, lifePoint: Dwarf.maxPoints, weapon: Dwarf.defaultWeapon, maxLifePoint: Dwarf.maxPoints, type: "Dwarf")
     }
     
-    // Present Dwarf
-    static func present() -> String {
-        return "The \(Dwarf.type) has \(Dwarf.maxPoints) life points and has \(Dwarf.defaultWeapon.strengh) points of attack given by his \(Dwarf.defaultWeapon.name)."
+    // Present Dwarf type
+     static func present() -> String {
+        return "The Dwarf has \(Dwarf.maxPoints) maximum life points and has \(Dwarf.defaultWeapon.strengh) points of attack given by his \(Dwarf.defaultWeapon.name)."
     }
 }

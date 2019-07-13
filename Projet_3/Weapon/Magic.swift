@@ -23,7 +23,7 @@ class Magic: Weapon {
     var type: String
     
     // Description of the weapon
-    override func description() -> String {
+    override var description: String {
         return "Thanks to this \(self.type) \(self.name), you will be able to save your team mate by \(self.strengh) life points"
     }
     

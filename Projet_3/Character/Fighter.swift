@@ -10,22 +10,19 @@ import Foundation
 
 // Fighter stucture
 class Fighter: Character {
-    // Maximum life points that the Fighter can have, and has at the beginning of the game
+    // Maximum life points Fighter type can have
     static let maxPoints = 100
     
-    // Default weapon that the Fighter has
+    // Default weapon Fighter type has
     static let defaultWeapon = Sword()
-    
-    // Type of character
-    static let type = "Fighter"
-    
+
     // Initialize Fighter properties
     init(name: String) {
-        super.init(name: name, lifePoint: Fighter.maxPoints, weapon: Fighter.defaultWeapon, maxLifePoint: Fighter.maxPoints)
+        super.init(name: name, lifePoint: Fighter.maxPoints, weapon: Fighter.defaultWeapon, maxLifePoint: Fighter.maxPoints, type: "Fighter")
     }
     
-    // Present the fighter
+    // Present Fighter type
     static func present() -> String {
-        return "The \(Fighter.type) has \(Fighter.maxPoints) life points and has \(Fighter.defaultWeapon.strengh) points of attack given by his \(Fighter.defaultWeapon.name)."
+        return "The Fighter has \(Fighter.maxPoints) maximum life points and has \(Fighter.defaultWeapon.strengh) points of attack given by his \(Fighter.defaultWeapon.name)."
     }
 }

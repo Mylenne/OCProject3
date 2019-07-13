@@ -26,8 +26,8 @@ class Sword: Weapon {
     let hilt = "leather"
     
     // Description of the weapon
-    override func description() -> String {
-        return "This \(self.name) take away \(self.strengh) points. The blade is made of \(self.blade) and the hilt is in \(self.hilt)."
+    override var description: String {
+        return "This \(self.name) takes away \(self.strengh) points. The blade is made of \(self.blade) and the hilt is in \(self.hilt)"
     }
     
     // Initialize Sword properties
