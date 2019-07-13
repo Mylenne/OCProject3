@@ -9,15 +9,15 @@
 import Foundation
 
 // Weapon stucture
-class Weapon {
+class Weapon: CustomStringConvertible {
     // Strengh of the weapon that the character has
     let strengh: Int
     
     // Name of the weapon
     let name: String
     
-    // Description of the weapon
-    func description() -> String {
+    // Weapon's description used when converting an instance to a string thanks to CustomStringConvertible
+    var description: String {
         return "The weapon is a \(self.name) and can take away \(self.strengh) life points."
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9071B3622D738AC0067623B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9071B3522D738AC0067623B /* Game.swift */; };
 		E96571D622A5230900EBF93D /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96571D522A5230900EBF93D /* Weapon.swift */; };
 		E96571D822A5232800EBF93D /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96571D722A5232800EBF93D /* Character.swift */; };
 		E96571DB22A5237B00EBF93D /* Colossus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96571DA22A5237B00EBF93D /* Colossus.swift */; };
@@ -22,6 +23,7 @@
 		E965720622A91E5900EBF93D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965720522A91E5900EBF93D /* Utils.swift */; };
 		E965720922A91F5300EBF93D /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965720822A91F5300EBF93D /* Team.swift */; };
 		E965722422B3E7D700EBF93D /* Wings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965722322B3E7D700EBF93D /* Wings.swift */; };
+		E999B38222D9FCA000A20744 /* BattleFantasy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999B38122D9FCA000A20744 /* BattleFantasy.swift */; };
 		E9F90549226F2E710017CCC1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F90548226F2E710017CCC1 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E9071B3522D738AC0067623B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		E96571D522A5230900EBF93D /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		E96571D722A5232800EBF93D /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		E96571DA22A5237B00EBF93D /* Colossus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colossus.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 		E965720522A91E5900EBF93D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E965720822A91F5300EBF93D /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		E965722322B3E7D700EBF93D /* Wings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wings.swift; sourceTree = "<group>"; };
+		E999B38122D9FCA000A20744 /* BattleFantasy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleFantasy.swift; sourceTree = "<group>"; };
 		E9F90545226F2E710017CCC1 /* Projet_3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Projet_3; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F90548226F2E710017CCC1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E9071B3422D738910067623B /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				E9071B3522D738AC0067623B /* Game.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		E96571D322A522D500EBF93D /* Weapon */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,9 +130,19 @@
 			path = Bonus;
 			sourceTree = "<group>";
 		};
+		E999B38022D9FC7500A20744 /* BattleFantasy */ = {
+			isa = PBXGroup;
+			children = (
+				E999B38122D9FCA000A20744 /* BattleFantasy.swift */,
+			);
+			path = BattleFantasy;
+			sourceTree = "<group>";
+		};
 		E9F9053C226F2E710017CCC1 = {
 			isa = PBXGroup;
 			children = (
+				E999B38022D9FC7500A20744 /* BattleFantasy */,
+				E9071B3422D738910067623B /* Game */,
 				E965722022AFC8FF00EBF93D /* Utils */,
 				E96571D422A522EB00EBF93D /* Character */,
 				E96571D322A522D500EBF93D /* Weapon */,
@@ -206,6 +228,7 @@
 			files = (
 				E96571DB22A5237B00EBF93D /* Colossus.swift in Sources */,
 				E96571EB22A523F200EBF93D /* Magic.swift in Sources */,
+				E999B38222D9FCA000A20744 /* BattleFantasy.swift in Sources */,
 				E96571D822A5232800EBF93D /* Character.swift in Sources */,
 				E96571E122A523A200EBF93D /* Fighter.swift in Sources */,
 				E96571DF22A5239500EBF93D /* Dwarf.swift in Sources */,
@@ -214,6 +237,7 @@
 				E96571E322A523BE00EBF93D /* Sword.swift in Sources */,
 				E965720622A91E5900EBF93D /* Utils.swift in Sources */,
 				E9F90549226F2E710017CCC1 /* main.swift in Sources */,
+				E9071B3622D738AC0067623B /* Game.swift in Sources */,
 				E96571E922A523E400EBF93D /* Ax.swift in Sources */,
 				E965720922A91F5300EBF93D /* Team.swift in Sources */,
 				E96571E522A523CA00EBF93D /* MagicWand.swift in Sources */,

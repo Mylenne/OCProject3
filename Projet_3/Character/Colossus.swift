@@ -10,22 +10,19 @@ import Foundation
 
 // Colossus structure
 class Colossus: Character {
-    // Maximum life points that the Colossus can have, and has at the beginning of the game
+    // Maximum life points Colossus type can have
     static let maxPoints = 200
     
-    // Default weapon that the Colossus has
+    // Default weapon Colossus type has
     static let defaultWeapon = Fist()
-    
-    // Type of character
-    static let type = "Colossus"
     
     // Initiliaze Colossus properties
     init(name: String) {
-        super.init(name: name, lifePoint: Colossus.maxPoints, weapon: Colossus.defaultWeapon, maxLifePoint: Colossus.maxPoints)
+        super.init(name: name, lifePoint: Colossus.maxPoints, weapon: Colossus.defaultWeapon, maxLifePoint: Colossus.maxPoints, type: "Colossus")
     }
     
-    // Present Colossus
+    // Present Colossus type
     static func present() -> String {
-        return "The \(Colossus.type) has \(Colossus.maxPoints) life points and has \(Colossus.defaultWeapon.strengh) points of attack with his \(Colossus.defaultWeapon.name)."
+        return "The Colossus has \(Colossus.maxPoints) maximum life points and has \(Colossus.defaultWeapon.strengh) points of attack with his \(Colossus.defaultWeapon.name)."
     }
 }

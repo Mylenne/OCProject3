@@ -10,23 +10,20 @@ import Foundation
 
 // Magus structure
 class Magus: Character {
-    // Maximum life points that the Magus can have, and has at the beginning of the game
+    // Maximum life points Magus type can have
     static let maxPoints = 20
     
-    // Default weapon that the Magus has
+    // Default weapon Magus type has
     static let defaultWeapon = Magic()
-    
-    // Type of character
-    static let type = "Magus"
     
     // Initialize Magus properties
     init(name:String) {
-        super.init(name: name, lifePoint: Magus.maxPoints, weapon: Magus.defaultWeapon, maxLifePoint: Magus.maxPoints)
+        super.init(name: name, lifePoint: Magus.maxPoints, weapon: Magus.defaultWeapon, maxLifePoint: Magus.maxPoints, type: "Magus")
     }
     
-    // Present the Magus
+    // Present Magus type
     static func present() -> String {
-        return "The \(Magus.type) has \(Magus.maxPoints) life points and has \(Magus.defaultWeapon.strengh) points of healing power given by his \(Magus.defaultWeapon.name)."
+        return "The Magus has \(Magus.maxPoints) maximum life points and has \(Magus.defaultWeapon.strengh) points of healing power given by his \(Magus.defaultWeapon.name)."
     }
     
     // If it's a Magus it will add points to his team mate and not take away points, from his enemy
@@ -38,6 +35,6 @@ class Magus: Character {
             character.lifePoint = character.maxLifePoint
         }
         
-        print("\(self.name) has save your team mate, \(character.name) by healing him and has now with his \(self.weapon.name), he has now \(character.lifePoint) ")
+        print("\(self.name) has saved your team mate, \(character.name) by healing him with his \(self.weapon.name), he has now \(character.lifePoint)\n")
     }
 }

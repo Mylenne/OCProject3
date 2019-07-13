@@ -23,8 +23,8 @@ class Wings: Weapon {
     var type: String
     
     // Description of the weapon
-    override func description() -> String {
-        return "Those \(self.name) are \(self.type) and can take away \(self.strengh) point."
+    override var description: String {
+        return "Those \(self.name) are \(self.type) and can take away \(self.strengh) points"
     }
     
     // Initialize Wings properties

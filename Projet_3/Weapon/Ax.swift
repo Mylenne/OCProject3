@@ -23,7 +23,7 @@ class Ax: Weapon {
     var type: String
     
     // Description of the weapon
-    override func description() -> String {
+    override var description: String {
         return "This \(self.name) is a \(self.type) and it takes away \(self.strengh) points"
     }
     

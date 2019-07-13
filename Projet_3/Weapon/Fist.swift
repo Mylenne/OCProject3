@@ -17,7 +17,7 @@ class Fist: Weapon {
     static let damage = 5
     
     // Description of the weapon
-    override func description() -> String {
+    override var description: String {
         return "Those fist can take away \(self.strengh) points"
     }
     

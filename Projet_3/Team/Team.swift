@@ -8,121 +8,114 @@
 
 import Foundation
 
-// Team structure
 class Team {
+    // Maximum number of members
+    static let maxMembers = 3
+    
     // The player's name in the team
     var playerName = ""
     
     // The name of the team
     var name = ""
     
-    // Array of all the character of the team
-    var choosenCharacter = [Character]()
+    // Array of team members
+    var members = [Character]()
     
-    // Function that removes dead character from array "choosenCharacter"
-    func removeIfDead(character: Character) {
-        if character.isDead() {
-            character.lifePoint = 0
-            print("\(character.name) is Dead")
-            
-            if let index = self.choosenCharacter.firstIndex(where: { $0 === character} ) {
-                self.choosenCharacter.remove(at: index)
-            }
-        }
-    }
-    
-    // Function that make sure all characters are dead
-    func isDead() -> Bool {
-        return self.choosenCharacter.isEmpty
-    }
-    
-    // If there is only a magus left, game over for team because he can only heal
-    func magusLeft() -> Bool {
-        if (self.choosenCharacter.count == 1) && (self.choosenCharacter[0] is Magus) {
-            self.choosenCharacter[0].lifePoint = 0
-            self.removeIfDead(character: self.choosenCharacter[0])
-            
-            print("Team \(self.name) you only have a Magus left and a Magus can only heal, game over 😥😭💀")
-            return true
-        }
-        return false
-    }
-    
-    // Returns true if the current team has only magus characters
-    func onlyMagus() -> Bool {
-        var hasOnlyMagus = true
+    // Build the team
+    func build() {
+        // Team name
+        print("Please name your team:")
+        self.name = Utils.readName()
         
-        for character in choosenCharacter {
-            if !(character is Magus) {
-                hasOnlyMagus = false
-            }
-        }
-        
-        return hasOnlyMagus
-    }
-    
-    // Function that let the player choose a character from the team
-    func chooseCharacter() -> Character {
-        var number = 1
-        for character in self.choosenCharacter  {
-            print("Press \(number) to choose \(character.name), the \(character).")
-            number += 1
-        }
-        let index = readChoosenCharacter(aliveCharacters: self.choosenCharacter.count)
-        return self.choosenCharacter[index-1]
-    }
-    
-    //Display of the characters and life points
-    func presentCharacters() {
-        for character in self.choosenCharacter {
-            character.present()
-        }
-        print("")
-    }
-    
-    // Create a team
-    static func create() -> Team {
-        let team = Team()
-        
-        // TEAM NAME
-        print("Name your team:")
-        team.name = readName()
-        
-        // PLAYER NAME
+        // Player name
         print("Your name:")
-        team.playerName = readPlayerName()
-        print("Welcome \(team.playerName) 😃, you are now in the \(team.name)'s team ")
+        self.playerName = Utils.readPlayerName()
+
+        print("Welcome \(self.playerName) 😃, you are now in the \(self.name)'s team ")
         
-        // INTRODUCING CHARACTERS
-        while team.choosenCharacter.count < 3 {
-            print("Team \(team.name), choose \(3 - team.choosenCharacter.count) characters one by one for your team:"
+        // Introducing characters
+        print("Team \(self.name), choose \(Team.maxMembers) members one by one for your team.")
+        while self.members.count < Team.maxMembers {
+            // Create the character and add it to members array
+            self.createAndAddMember()
+        }
+        
+        // Present team members created
+        self.presentMembers()
+    }
+    
+    // Create and add a member to the team
+    func createAndAddMember() {
+        if (self.members.count < Team.maxMembers) {
+            print("Character \(self.members.count + 1), choose between:"
                 + "\n1. \(Fighter.present()) "
                 + "\n2. \(Magus.present())"
                 + "\n3. \(Colossus.present())"
                 + "\n4. \(Dwarf.present())")
+            let choice = Utils.readNumber(minimum: 1, maximum: 4)
             
-            // FUNCTION WITH SWITCH THAT CREATE THE CHARACTERS
-            team.choosenCharacter.append(Character.create())
+            switch choice {
+            case 1: // FIGHTER
+                print("Give your fighter a name:")
+                let fighter = Fighter(name: Utils.readName())
+                self.members.append(fighter)
+                print("\(fighter)\(fighter.weapon)\n")
+            case 2: // MAGUS
+                print("Give your magus a name:")
+                let magus = Magus(name: Utils.readName())
+                self.members.append(magus)
+                print("\(magus)\(magus.weapon)\n")
+            case 3: //COLOSSUS
+                print("Give your colossus a name:")
+                let colossus = Colossus(name: Utils.readName())
+                self.members.append(colossus)
+                print("\(colossus)\(colossus.weapon)\n")
+            case 4: // DWARF
+                print("Give your dwarf a name:")
+                let dwarf = Dwarf(name: Utils.readName())
+                self.members.append(dwarf)
+                print("\(dwarf)\(dwarf.weapon)\n")
+            default :
+                print("Unknown character number")
+            }
         }
-        // RECALL MEMBERS OF THE TEAM
-        team.presentCharacters()
-        
-        return team
     }
     
-    // Function fight between 2 characters
+    // Print team members description
+    func presentMembers() {
+        for character in self.members {
+            print(character)
+        }
+        
+        print("")
+    }
+    
+    // Choose a member in the team
+    func chooseMember() -> Character {
+        var number = 1
+        
+        for character in self.members  {
+            print("Press \(number) to choose \(character.name), the \(character.type).")
+            number += 1
+        }
+        
+        let index = Utils.readNumber(minimum: 1, maximum: self.members.count)
+        return self.members[index-1]
+    }
+    
+    // Fight another team
     func fight(team: Team) {
         // If the two teams have only magus characters or the remaining character of the current team is a magus
         // then there can be no fight
         if self.onlyMagus() && team.onlyMagus() {
-            print("Team \(self.name) and team \(team.name) you only have Magus characters in your teams, the game is tied 😥😭💀")
-            self.choosenCharacter = []
-            team.choosenCharacter = []
+            print("Team 👾\(self.name)👾 and team \(team.name) you only have Magus characters in your teams, the game is tied 😥😭💀")
+            self.members = []
+            team.members = []
         } else if !self.magusLeft() {
             // Choice of the attacker made by the player, between alive characters
-            print("\(self.name) please choose your attacker in your team:")
-            self.presentCharacters()
-            let attacker = self.chooseCharacter()
+            print("👾\(self.name)👾 please choose your attacker in your team:")
+            self.presentMembers()
+            let attacker = self.chooseMember()
             var opponent: Character
             
             // Box with treasure appears
@@ -133,14 +126,14 @@ class Team {
             
             // If the attacker is not a magus, introducing choice as an opponent for the player
             if !(attacker is Magus) {
-                print("\(self.name) please choose your opponent in \(team.name):\n")
-                team.presentCharacters()
-                opponent = team.chooseCharacter()
+                print("👾\(self.name)👾 please choose your opponent in \(team.name):\n")
+                team.presentMembers()
+                opponent = team.chooseMember()
             } else {
-                //If it's magus it heals it doesn't attacks and must choose a team mate from his own team
-                print("\(self.name), choose your team mate in \(self.name) to heal him:")
-                self.presentCharacters()
-                opponent = self.chooseCharacter()
+                // If it's magus it heals it doesn't attacks and must choose a team mate from his own team
+                print("👾\(self.name)👾, choose your team mate in \(self.name) to heal him:")
+                self.presentMembers()
+                opponent = self.chooseMember()
             }
             
             // Attacker attacks opponent or save team mate
@@ -149,5 +142,48 @@ class Team {
             // Removed of opponent is dead from his own team
             team.removeIfDead(character: opponent)
         }
+    }
+    
+    // Removes dead character from members
+    func removeIfDead(character: Character) {
+        if character.isDead() {
+            character.lifePoint = 0
+            print("\(character.name) is Dead")
+            
+            if let index = self.members.firstIndex(where: { $0 === character} ) {
+                self.members.remove(at: index)
+            }
+        }
+    }
+    
+    // A team is dead if it has no members
+    func isDead() -> Bool {
+        return self.members.isEmpty
+    }
+    
+    // Returns true if the current team has only magus characters
+    func onlyMagus() -> Bool {
+        var hasOnlyMagus = true
+        
+        for character in members {
+            if !(character is Magus) {
+                hasOnlyMagus = false
+            }
+        }
+        
+        return hasOnlyMagus
+    }
+    
+    // If there is only a magus left, game over for team because he can only heal
+    func magusLeft() -> Bool {
+        if (self.members.count == 1) && (self.members[0] is Magus) {
+            self.members[0].lifePoint = 0
+            self.removeIfDead(character: self.members[0])
+            
+            print("Team \(self.name) you only have a Magus left and a Magus can only heal, game over 😥😭💀")
+            return true
+        }
+        
+        return false
     }
 }
