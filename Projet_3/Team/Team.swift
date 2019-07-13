@@ -108,12 +108,12 @@ class Team {
         // If the two teams have only magus characters or the remaining character of the current team is a magus
         // then there can be no fight
         if self.onlyMagus() && team.onlyMagus() {
-            print("Team \(self.name) and team \(team.name) you only have Magus characters in your teams, the game is tied 😥😭💀")
+            print("Team 👾\(self.name)👾 and team \(team.name) you only have Magus characters in your teams, the game is tied 😥😭💀")
             self.members = []
             team.members = []
         } else if !self.magusLeft() {
             // Choice of the attacker made by the player, between alive characters
-            print("\(self.name) please choose your attacker in your team:")
+            print("👾\(self.name)👾 please choose your attacker in your team:")
             self.presentMembers()
             let attacker = self.chooseMember()
             var opponent: Character
@@ -126,12 +126,12 @@ class Team {
             
             // If the attacker is not a magus, introducing choice as an opponent for the player
             if !(attacker is Magus) {
-                print("\(self.name) please choose your opponent in \(team.name):\n")
+                print("👾\(self.name)👾 please choose your opponent in \(team.name):\n")
                 team.presentMembers()
                 opponent = team.chooseMember()
             } else {
                 // If it's magus it heals it doesn't attacks and must choose a team mate from his own team
-                print("\(self.name), choose your team mate in \(self.name) to heal him:")
+                print("👾\(self.name)👾, choose your team mate in \(self.name) to heal him:")
                 self.presentMembers()
                 opponent = self.chooseMember()
             }

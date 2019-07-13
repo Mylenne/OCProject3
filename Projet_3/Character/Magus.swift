@@ -35,6 +35,6 @@ class Magus: Character {
             character.lifePoint = character.maxLifePoint
         }
         
-        print("\(self.name) has saved your team mate, \(character.name) by healing him with his \(self.weapon.name), he has now \(character.lifePoint) ")
+        print("\(self.name) has saved your team mate, \(character.name) by healing him with his \(self.weapon.name), he has now \(character.lifePoint)\n")
     }
 }

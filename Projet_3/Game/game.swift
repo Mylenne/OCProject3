@@ -36,6 +36,8 @@ class Game {
     
     // Battle
     func battle() {
+        print("The fight can begin now!!")
+        
         // Battle while neither one of the teams is dead
         while !(team1.isDead() || team2.isDead()) {
             self.rounds += 1

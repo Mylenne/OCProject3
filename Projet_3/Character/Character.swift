@@ -68,7 +68,7 @@ class Character: CustomStringConvertible {
                 character.lifePoint = 0
             }
             
-            print("\n\(character.name), the \(character.type), has been attacked by \(self.name), the \(self.type) with a \(self.weapon.name), he has lost \(self.weapon.strengh) life points and has now only \(character.lifePoint) points left 😢")
+            print("\n\(character.name), the \(character.type), has been attacked by \(self.name), the \(self.type) with a \(self.weapon.name), he has lost \(self.weapon.strengh) life points and has now only \(character.lifePoint) points left 😢\n")
         }
     }
     
