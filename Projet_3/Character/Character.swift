@@ -14,7 +14,7 @@ class Character: CustomStringConvertible {
     var name: String
     
     // Character's type
-    var type: String
+    let type: String
     
     // Character's number of life points
     var lifePoint: Int
